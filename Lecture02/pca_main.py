@@ -1,7 +1,7 @@
 from pca_knn import *
 
 def main():
-    X_train = pd.read_csv('Lecture02/mnist.csv')
+    X_train = pd.read_csv('Lecture03/mnist.csv')
     Y_train = X_train.pop('label')
 
     plot2dMNIST(X_train, Y_train, size = 20)
