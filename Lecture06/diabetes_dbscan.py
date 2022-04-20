@@ -93,7 +93,7 @@ def run_DBSCAN(features:pd.DataFrame, params: dict, plot: bool = True):
 
 def main():
 
-    diabetes_data = pd.read_csv("diabetes.csv")
+    diabetes_data = pd.read_csv('Lecture06/diabetes.csv')
     sns.pairplot(diabetes_data, hue = 'Outcome')
     plt.show()
     labels = diabetes_data.pop("Outcome")
