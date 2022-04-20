@@ -7,3 +7,7 @@ if __name__ == "__main__":
     kmeans.elbow()
     kmeans.kmean()
     kmeans.umap()
+    kmeans.pcaComponents()
+    kmeans.pca()
+    kmeans.pcaUmap()
+    kmeans.difference()

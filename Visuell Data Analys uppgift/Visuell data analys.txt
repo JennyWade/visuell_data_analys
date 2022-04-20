@@ -1,0 +1,33 @@
+KMeans:
+KMean försöker klustra datapunkter utefter K = angivet antal grupper/klusters.
+För att köra KMean behöver vi alltså ange K. Jag valde att hitta det "mest optimala" genom att prova 1-10, spara i en lista
+och visualisera. 
+När vi angivit K försöker alltså KMean gruppera våra datapunkter i K grupper baserat på hur lika dem är, samtidigt som den försöker 
+skilja på grupperna baserat på hur olika dem är. Inuti varje kluster jobbar den sen med att minimera avståndet och hitta mittenpunkten,
+alltså genomsnitten = mean. Detta görs flera gånger om tills KMean har hittat bäst resultat eller ett visst antal gånger om en specifierat detta.
+
+DBScan:
+
+Till skillnad från KMeans behöver en inte ange antal cluster. Istället behöver vi ange två saker, eps(epsilon) och min_samples.
+Epsilon bestämmer hur nära datapunkterna behöver vara för att klassas som en granne/ett kluster.
+Min_samples bestämer antalet datapunkter som krävs för att det ska klassas som ett kluster. Ex: om min_samples=5 krävs det minst 5 
+närliggande datapunkter för att det ska bli ett cluster.
+DBScan alogritmen använder sig sedan av dessa två för att klustra våra datapunkter.
+
+För att räkna ut dessa tog jag bland annat hjälp av denna sidan:
+https://www.section.io/engineering-education/dbscan-clustering-in-python/
+
+Där tipsade de om att använda Nearest Neighbor för att få fram avstånden på våra datapunkter. 
+I min 'Graph over nearest neighbor distance' graf syns Episol på y-axeln och avstånded mellan varje punkt på x-axeln.
+Med hjälp av denna kunde jag välja eps=5 för bröstcancer datasetet, och eps=3 för vin datasetet.
+I ovan artikel nämns även att min_samples för vara 2*dataframe dimensionen. I mitt fall var det 2*32 (bröstcancer) och 2*14.
+
+PCA:
+För samtliga algoritmer och dataset valde jag att göra scatter plots som visar de labels/targets som fanns i datasetet,
+de labels som KMeans kommit fram till samt KMeans efter PCA.
+För samtliga syntes ett tydligt resultat där våra datapunkter inte överlappade, men det gjorde inte stor skillnad i UMAP graferna.
+Där fanns fortfarande ett fåtal datapunkter som rörde sig in i den andra gruppen.
+Jag skulle gissa på att PCA hjälpa då den maximerade datan utan att använda hela datasetet, utan kunde få fram bäst resultat utefter
+mitt valda antal components.
+För att få fram components valde jag att göra en graf som visade variance ration för samtliga dimensioner/features i hela setet,
+sen se över vilken siffra som ger ett högt värde men som ändå kan utesluta en del features. Siktade på ca 0.95=95% i båda dataseten.
